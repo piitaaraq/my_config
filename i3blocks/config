@@ -1,0 +1,67 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=false
+separator_block_width=2
+
+#[documentation]
+#full_text=Documentation
+#website=https://vivien.github.io/i3blocks
+#command=xdg-open "$website"
+#color=#f12711
+
+#[greetings]
+#color=#f5af19
+#command=echo "Hello, $USER!"
+#interval=once
+
+[volume]
+command=$SCRIPT_DIR/volume.sh
+interval=once
+signal=10
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+#SHORT_FORMAT="${SYMB} ${VOL}% [${INDEX}]"
+#AUDIO_HIGH_SYMBOL='  '
+#AUDIO_MED_THRESH=50
+#AUDIO_MED_SYMBOL='  '
+#AUDIO_LOW_THRESH=0
+#AUDIO_LOW_SYMBOL='  '
+#AUDIO_DELTA=5
+#DEFAULT_COLOR="#eceff5"
+#MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=0
+#USE_DESCRIPTION=0
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=0
+background="#bd93f9"
+
+#[wifi]
+#command=$SCRIPT_DIR/wifi
+#label=wifi:
+#INTERFACE=wlp3s0
+#interval=60
+
+
+[battery]
+command=$SCRIPT_DIR/battery.sh
+#label=
+#instance=0
+markup=pango
+interval=5
+color="#282a36"
+background="#ff79c6"
+
+[time]
+command=date '+ %Y-%m-%d %H:%M '
+interval=60
+color="#282a36"
+background="#ffb86c"

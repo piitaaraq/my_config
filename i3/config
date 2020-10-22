@@ -1,0 +1,174 @@
+# Piitaaraq's i3wm configuration
+
+# Variables
+set $mod			Mod4
+set $up				k
+set $down			j
+set $left			h
+set $right		l
+
+set $ws1 			"  1  "
+set $ws2 			"  2  "
+set $ws3 			"  3  "
+set $ws4 			"  4  "
+set $ws5 			"  5  "
+set $ws6 			"  6  "
+set $ws7 			"  7  "
+set $ws8 			"  8  "
+set $ws9 			"  9  "
+set $ws10 		"  10 "
+#Appearance
+font pango:Hack Nerd Font Mono 8
+# Colors
+
+# Keybindings
+bindsym $mod+Return 	exec	alacritty
+bindsym $mod+Shift+f 	exec	firefox
+bindsym $mod+Shift+q	kill
+bindsym $mod+d 				exec 	dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'Hack Nerd Font-10' -bw 3
+bindsym $mod+x 				exec	rofi -location 1 -xoffset 6 -yoffset 26 -show combi -font "Hack Nerd Font 10" -icon-theme "Tela" -show-icons
+# Navigation
+bindsym $mod+$left					focus left
+bindsym $mod+$down					focus down
+bindsym $mod+$up						focus up
+bindsym $mod+$right					focus right
+bindsym $mod+Left						focus left
+bindsym $mod+Down 					focus down
+bindsym $mod+Up 						focus up
+bindsym $mod+Right 					focus right
+
+bindsym $mod+Shift+$left 		move left
+bindsym $mod+Shift+$down 		move down
+bindsym $mod+Shift+$up 			move up
+bindsym $mod+Shift+$right 	move right
+bindsym $mod+Shift+Left 		move left
+bindsym $mod+Shift+Down 		move down
+bindsym $mod+Shift+Up 			move up
+bindsym $mod+Shift+Right 		move right
+
+bindsym $mod+t split 				toggle
+bindsym $mod+f fullscreen 	toggle
+bindsym $mod+s 							layout stacking
+bindsym $mod+w 							layout tabbed
+bindsym $mod+e 							layout toggle split
+bindsym $mod+Shift+space 		floating toggle
+bindsym $mod+space 					focus mode_toggle
+bindsym $mod+a 							focus parent
+
+bindsym $mod+Shift+minus 		move scratchpad
+bindsym $mod+minus 					scratchpad show
+
+bindsym $mod+1 							workspace $ws1
+bindsym $mod+2 							workspace $ws2
+bindsym $mod+3 							workspace $ws3
+bindsym $mod+4 							workspace $ws4
+bindsym $mod+5 							workspace $ws5
+bindsym $mod+6 							workspace $ws6
+bindsym $mod+7 							workspace $ws7
+bindsym $mod+8 							workspace $ws8
+bindsym $mod+9 							workspace $ws9
+bindsym $mod+0 							workspace $ws10
+
+bindsym $mod+Shift+1 				move container to workspace $ws1
+bindsym $mod+Shift+2 				move container to workspace $ws2
+bindsym $mod+Shift+3 				move container to workspace $ws3
+bindsym $mod+Shift+4 				move container to workspace $ws4
+bindsym $mod+Shift+5 				move container to workspace $ws5
+bindsym $mod+Shift+6 				move container to workspace $ws6
+bindsym $mod+Shift+7 				move container to workspace $ws7
+bindsym $mod+Shift+8 				move container to workspace $ws8
+bindsym $mod+Shift+9 				move container to workspace $ws9
+bindsym $mod+Shift+0 				move container to workspace $ws10
+
+bindsym Mod1+Shift+c  			reload
+bindsym Mod1+Shift+r  			restart
+bindsym Mod1+Shift+e 				exec "i3-nagbar -t warning -f 'pango:Input Mono Condensed 9' -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym Mod4+r 							mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or Mod1+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Mod1+r mode "default"
+}
+
+floating_modifier 						Mod1
+floating_minimum_size 				75 x 50
+floating_maximum_size 				-1 x -1
+# Audio controls
+bindsym XF86AudioMute 				exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp 	exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #282A36
+
+# bar
+bar {
+		status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
+    #status_command i3status
+		position top
+		#tray_padding 0
+		#separator_symbol ""
+		colors {
+				background #282A36
+				statusline #ffb86c
+				separator #ffb86c
+        # workspaces section            
+        #                    	border  backgr. text
+				focused_workspace  #44475A #44475A #F8F8F2
+				active_workspace   #282A36 #44475A #F8F8F2
+				inactive_workspace #282A36 #282A36 #BFBFBF
+				urgent_workspace   #FF5555 #FF5555 #F8F8F2
+				binding_mode       #FF5555 #FF5555 #F8F8F2
+		}
+		#font pango: TerminessTTF Nerd Font Mono 10
+		font pango: UbuntuMono Nerd Font 10
+}
+
+# i3-gaps
+for_window [class=".*"] border pixel 4
+for_window [class="firefox"] 				border none
+for_window [class="Chromium"] 			border none
+for_window [class="Google-chrome"] 	border none
+
+#gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle <px>
+gaps inner 				8
+gaps outer 				-3
+smart_borders 		on
+smart_gaps 				on
+
+## Autostart 
+#Compton
+exec_always 			--no-startup-id picom &
+# Wallpaper
+exec_always 			--no-startup-id sh ~/.fehbg
+# network manager
+exec 							--no-startup-id nm-applet --sm-disable
+
+# Screen lock
+# exec --no-startup-id xautolock -time 15 -locker lock
+
+# polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
