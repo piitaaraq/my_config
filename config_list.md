@@ -1,3 +1,5 @@
+# Config files and scripts
+
 Xorg 
 /etc/X/xorg.conf.d/
 00-keyboard.conf
